@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="MediSeens helps Dental, Hair Transplant, and Aesthetic clinics generate high-quality patient appointments using specialized Meta Ads systems.">
+    <title>MediSeens | Patient Acquisition for Clinics</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            /* Colors - Medical/Trust Palette */
+            --primary: #0e7490;
+            /* Cyanish-Teal */
+            --primary-dark: #155e75;
+            --primary-light: #ecfeff;
+            --secondary: #334155;
+            /* Slate */
+            --accent: #059669;
+            /* Emerald Green for success/growth indicators */
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+            /* Spacing */
+            --container-width: 1200px;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .bg-white {
+            background-color: var(--bg-white);
+        }
+
+        .bg-light {
+            background-color: var(--bg-light);
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: var(--text-main);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-full {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            padding-top: calc(var(--header-height) + 80px);
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e0f2fe 100%);
+        }
+
+        .hero-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            text-align: left;
+        }
+
+        .hero-text {
+            max-width: 100%;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .niche-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .niche-badge {
+            background-color: rgba(14, 116, 144, 0.1);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .trust-indicators {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            align-items: center;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .check-icon {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* --- PROBLEM --- */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .problem-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        /* --- SOLUTION --- */
+        .solution-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .solution-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .solution-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .solution-marker {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .solution-graphic {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-graphic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        /* --- NICHES --- */
+        .niche-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .niche-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+        }
+
+        .niche-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .niche-header {
+            background-color: var(--primary-light);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .niche-header h3 {
+            color: var(--primary-dark);
+            margin: 0;
+        }
+
+        .niche-body {
+            padding: 1.5rem;
+        }
+
+        .niche-tag {
+            background-color: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* --- WHY US --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        /* --- PROCESS --- */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #e2e8f0;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        .cta-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .cta-text h2 {
+            color: white;
+        }
+
+        .cta-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+        }
+
+        .audit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.1);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-white);
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                transform: none;
+                margin-top: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .solution-split {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-container {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            /* Simplified for mobile: hiding links */
+
+            .navbar .container {
+                justify-content: center;
+            }
+
+            .nav-content {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">Medi<span>Seens</span></a>
+            <div class="nav-links">
+                <a href="#problems">Problems</a>
+                <a href="#solution">Our System</a>
+                <a href="#niches">Who We Help</a>
+                <a href="#process">Process</a>
+            </div>
+            <div class="nav-links">
+                <a href="#audit" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Book Audit</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="niche-badges" style="justify-content: flex-start;">
+                    <span class="niche-badge">Dental</span>
+                    <span class="niche-badge">Hair Transplant</span>
+                    <span class="niche-badge">Aesthetics</span>
+                </div>
+                <h1 class="hero-title">We Help Clinics Book More <span class="text-primary">High-Intent</span> Patient
+                    Appointments</h1>
+                <p class="hero-subtitle">Stop settling for low-quality leads. Implement a proven acquisition system
+                    designed exclusively for private practice growth.</p>
+
+                <div class="cta-buttons">
+                    <a href="#audit" class="btn btn-primary">Book a Free Patient Growth Audit</a>
+                    <a href="#solution" class="btn btn-secondary">See How It Works</a>
+                </div>
+
+                <div class="trust-indicators" style="justify-content: flex-start; flex-wrap: wrap;">
+                    <div class="trust-item">
+                        <span class="check-icon">✓</span> <span>HIPAA-Conscious Systems</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="check-icon">✓</span> <span>Clinic-Focused Funnels</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="check-icon">✓</span> <span>Result-Based ROI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="images/hero.png" alt="Doctor interacting with patient in a modern clinic">
+            </div>
+        </div>
+    </header>
+
+    <!-- PROBLEM AWARENESS -->
+    <section id="problems" class="section bg-white">
+        <div class="container">
+            <div class="text-center" style="max-width: 700px; margin: 0 auto 3rem auto;">
+                <span class="subtitle">The Problem</span>
+                <h2>Is Your Clinic Suffering from "Empty Lead" Syndrome?</h2>
+                <p>Most agencies send traffic. Few send patients. Does this sound familiar?</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="problem-icon">📉</span>
+                    <h3 class="problem-title">Low Quality Leads</h3>
+                    <p>Contact forms filled with fake numbers, disconnected lines, or people who "never requested info."
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">🏷️</span>
+                    <h3 class="problem-title">Price Shoppers</h3>
+                    <p>Leads asking "how much?" before knowing the value of your complex procedures.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">👻</span>
+                    <h3 class="problem-title">High No-Show Rates</h3>
+                    <p>Appointments that vanish, leaving your staff and chair time wasted.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">❓</span>
+                    <h3 class="problem-title">Zero Transparency</h3>
+                    <p>Agencies sending monthly reports full of "clicks" and "impressions" but zero booked revenue.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section id="solution" class="section bg-light">
+        <div class="container">
+            <div class="solution-split">
+                <div class="solution-text">
+                    <span class="subtitle">Our Solution</span>
+                    <h2>The Patient Appointment Acquisition System</h2>
+                    <p>We don't just run ads. We build an end-to-end patient booking infrastructure for your clinic.</p>
+
+                    <ul class="solution-list">
+                        <li>
+                            <div class="solution-marker">1</div>
+                            <div>
+                                <strong>High-Intent Targeting</strong><br>
+                                We target local users actively researching treatments, not just casual scrollers.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="solution-marker">2</div>
+                            <div>
+                                <strong>Pre-Qualification Funnels</strong><br>
+                                Interactive forms that filter out budget-seekers and prioritize serious patients.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="solution-marker">3</div>
+                            <div>
+                                <strong>Automated Follow-Up</strong><br>
+                                Instant SMS and WhatsApp touchpoints to engage leads while they are hot.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="solution-marker">4</div>
+                            <div>
+                                <strong>Appointment Focus</strong><br>
+                                Our KPI is "Confirmed Bookings," not simple lead volume.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="solution-graphic">
+                    <!-- Simple CSS Graphic Representation -->
+                    <div
+                        style="background: var(--bg-light); padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
+                        <small style="color: var(--text-muted); display: block; margin-bottom: 10px;">Typical
+                            Agency</small>
+                        <div
+                            style="height: 10px; width: 100%; background: #e2e8f0; border-radius: 5px; overflow: hidden;">
+                            <div style="height: 100%; width: 20%; background: #94a3b8;"></div>
+                        </div>
+                        <div style="margin-top: 5px; font-weight: bold; font-size: 0.9rem;">20% Connected</div>
+                    </div>
+
+                    <div
+                        style="background: var(--primary-light); padding: 20px; border-radius: 8px; text-align: left; border: 1px solid var(--primary);">
+                        <small
+                            style="color: var(--primary-dark); display: block; margin-bottom: 10px; font-weight: bold;">MediSeens
+                            System</small>
+                        <div
+                            style="height: 10px; width: 100%; background: white; border-radius: 5px; overflow: hidden;">
+                            <div style="height: 100%; width: 85%; background: var(--primary);"></div>
+                        </div>
+                        <div style="margin-top: 5px; font-weight: bold; color: var(--primary-dark); font-size: 0.9rem;">
+                            85% Contact Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NICHES -->
+    <section id="niches" class="section bg-white">
+        <div class="container">
+            <div class="text-center">
+                <span class="subtitle">Who We Serve</span>
+                <h2>Specialized Medical Verticals</h2>
+                <p>We don't do e-commerce. We don't do restaurants. We only scale clinics.</p>
+            </div>
+
+            <div class="niche-grid">
+                <div class="niche-card">
+                    <img src="images/dental.png" alt="Modern Dental Clinic" class="niche-img">
+                    <div class="niche-header">
+                        <h3>Dental Clinics</h3>
+                    </div>
+                    <div class="niche-body">
+                        <span class="niche-tag">Implants</span>
+                        <span class="niche-tag">Invisalign</span>
+                        <span class="niche-tag">Veneers</span>
+                        <p>Focus on high-ticket cosmetic and restorative dentistry. Connecting you with patients looking
+                            for smile transformations.</p>
+                    </div>
+                </div>
+                <div class="niche-card">
+                    <img src="images/hair.png" alt="Hair Transplant Consultation" class="niche-img">
+                    <div class="niche-header">
+                        <h3>Hair Transplant</h3>
+                    </div>
+                    <div class="niche-body">
+                        <span class="niche-tag">FUE / DHI</span>
+                        <span class="niche-tag">PRP Therapy</span>
+                        <p>Targeting men and women experiencing hair loss with sensitivity and authority. Booking
+                            consultations for lifetime value.</p>
+                    </div>
+                </div>
+                <div class="niche-card">
+                    <img src="images/skin.png" alt="Luxury Skin Clinic" class="niche-img">
+                    <div class="niche-header">
+                        <h3>Skin & Aesthetic</h3>
+                    </div>
+                    <div class="niche-body">
+                        <span class="niche-tag">Injectables</span>
+                        <span class="niche-tag">Lasers</span>
+                        <span class="niche-tag">Anti-Aging</span>
+                        <p>Driving repeat-visit patients for Botox, fillers, and skin treatments. Building a loyal
+                            clientele base.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY MEDISEENS -->
+    <section id="authority" class="section bg-light">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <span class="subtitle">Why Choose Us</span>
+                <h2>Not Another "Generalist" Agency</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏥</div>
+                    <div>
+                        <h3>Clinic-Only Focus</h3>
+                        <p>We understand patient privacy (HIPAA awareness), medical ethics, and the specific psychology
+                            of healthcare decisions.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div>
+                        <h3>Appointment-Driven KPI</h3>
+                        <p>We track success by who sits in your chair, not just who clicks an ad. Our reports speak your
+                            language.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🧠</div>
+                    <div>
+                        <h3>Local Patient Psychology</h3>
+                        <p>We know how to position your clinic as the trusted authority in your specific city or region.
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <div>
+                        <h3>Systems + Automation</h3>
+                        <p>We implement the backend tech to ensure no lead falls through the cracks, even when your
+                            front desk is busy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section bg-white">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="subtitle">How It Works</span>
+                <h2>Simple 4-Step Onboarding</h2>
+            </div>
+
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Audit & Strategy</h3>
+                    <p style="font-size: 0.9rem;">We analyze your current offer and local market gaps.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Funnel Setup</h3>
+                    <p style="font-size: 0.9rem;">We build the landing pages and tracking systems.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Launch Ads</h3>
+                    <p style="font-size: 0.9rem;">Targeted Meta Ads go live to your ideal patient demographic.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <h3>Optimization</h3>
+                    <p style="font-size: 0.9rem;">We refine daily based on appointment quality and cost.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="audit" class="section cta-section">
+        <div class="container cta-container">
+            <div class="cta-text">
+                <h2>Ready to Fill Your Calendar?</h2>
+                <p style="margin-bottom: 2rem; color: #ecfeff;">Book a free Growth Audit. We'll review your current
+                    setup, identify wasted spend, and forecast your potential appointment volume.</p>
+
+                <div
+                    style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent);">
+                    <p style="color: white; margin: 0; font-size: 0.9rem;"><strong>No Obligation &
+                            Risk-Free:</strong><br>Even if you don't hire us, you'll walk away with a clear roadmap for
+                        improved patient acquisition.</p>
+                </div>
+            </div>
+
+            <div class="audit-card">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Book My Free Audit</h3>
+                <form id="auditForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Clinic Name</label>
+                        <input type="text" class="form-input" required placeholder="e.g. City Dental Care">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Contact Name</label>
+                        <input type="text" class="form-input" required placeholder="Your Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone / WhatsApp</label>
+                        <input type="tel" class="form-input" required placeholder="(555) 123-4567">
+                    </div>
+
+                    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Clinic Type</label>
+                            <select class="form-select" required>
+                                <option value="" disabled selected>Select...</option>
+                                <option value="dental">Dental</option>
+                                <option value="hair">Hair Transplant</option>
+                                <option value="skin">Skin/Aesthetic</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-input" required placeholder="City">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1rem;">
+                        <button type="submit" class="btn btn-primary btn-full">Secure My Spot</button>
+                    </div>
+                    <p style="text-align: center; font-size: 0.75rem; margin-top: 1rem; color: var(--text-muted);">
+                        Your information is 100% secure.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">MediSeens</div>
+            <p class="copyright">&copy; 2024 MediSeens Marketing. All rights reserved.</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; max-width: 600px; margin: 10px auto;">
+                Disclaimer: MediSeens is a marketing agency. We do not provide medical advice. Results vary based on
+                clinic location, budget, and offer. We do not guarantee specific earnings or patient numbers.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            addEventListener('click', function (e) {
+                if (anchor === e.target || anchor.contains(e.target)) {
+                    e.preventDefault();
+                    const targetId = anchor.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Form Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+
+            // Simple visual feedback
+            btn.innerText = "Submitting...";
+            btn.style.opacity = "0.8";
+            btn.disabled = true;
+
+            // Simulate network request
+            setTimeout(() => {
+                alert("Thank you! Your audit request has been received. We will contact you shortly.");
+                e.target.reset();
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
