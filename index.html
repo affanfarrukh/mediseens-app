@@ -1036,25 +1036,72 @@
             });
         });
 
-        // Form Handling
+        // --- GOOGLE SHEETS INTEGRATION ---
+        // TODO: REPLACE THIS URL WITH YOUR DEPLOYED GOOGLE APPS SCRIPT URL
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyx1ZQUqQEJiVbAt1pnBtpiXKVMoj66nLh3nTIMiNrg6jKaPvOhtgSTuxviWa69gIk8HA/exec";
+
         function handleFormSubmit(e) {
             e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
+            const form = e.target;
+            const btn = form.querySelector('button[type="submit"]');
             const originalText = btn.innerText;
 
-            // Simple visual feedback
-            btn.innerText = "Submitting...";
+            // Basic Validation
+            if (!form.checkValidity()) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+
+            if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_URL_HERE") {
+                alert("CONFIGURATION REQUIRED: Please deploy the Google Apps Script and update the URL in index.html line 1020.");
+                return;
+            }
+
+            // UI Feedback
+            btn.innerText = "Processing...";
             btn.style.opacity = "0.8";
             btn.disabled = true;
 
-            // Simulate network request
-            setTimeout(() => {
-                alert("Thank you! Your audit request has been received. We will contact you shortly.");
-                e.target.reset();
-                btn.innerText = originalText;
-                btn.style.opacity = "1";
-                btn.disabled = false;
-            }, 1000);
+            // Prepare Data for Google Sheets
+            // Mapping input values to the names expected by the Google Script
+            const formData = new FormData();
+            formData.append("clinic_name", form.querySelector('input[placeholder="e.g. City Dental Care"]').value);
+            formData.append("contact_name", form.querySelector('input[placeholder="Your Name"]').value);
+            formData.append("email", form.querySelector('input[type="email"]').value);
+            formData.append("phone", form.querySelector('input[type="tel"]').value);
+            formData.append("clinic_type", form.querySelector('select').value);
+            formData.append("city", form.querySelector('input[placeholder="City"]').value);
+
+            // Use fetch with 'no-cors' mode (standard for posting to Google Script from static HTML)
+            // Note: 'no-cors' means we can't read the response JSON content directly in browser,
+            // so we assume success if no network error. 
+            // However, to get the Duplicate Email error, we need 'cors' mode.
+            // Google Scripts usually support CORS if deployed correctly as "Anyone".
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === "success") {
+                        alert("✅ Success! Your audit request has been booked. We will contact you at " + form.querySelector('input[type="email"]').value);
+                        form.reset();
+                    } else if (data.code === 409) {
+                        alert("⚠️ Notice: " + data.message);
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Something went wrong. Please try again or contact us directly.");
+                })
+                .finally(() => {
+                    btn.innerText = originalText;
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+                });
         }
     </script>
 </body>
